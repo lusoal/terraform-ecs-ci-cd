@@ -3,14 +3,14 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# terraform {
-#   backend "s3" {
-#     region  = "sa-east-1"
-#     bucket  = "enablers-team"
-#     key     = "tf-states/IWS/GREMLIN.tfstate"
-#     encrypt = true
-#   }
-# }
+terraform {
+  backend "s3" {
+    region  = "us-east-1"
+    bucket  = "__BUCKET_NAME__"
+    key     = "tf-states/prd/apps/sample-app/sampleapp/sample-app.tfstate"
+    encrypt = true
+  }
+}
 
 //Import the constants
 module "environment" {
@@ -127,12 +127,12 @@ module "service_ecs_blue" {
   name                   = var.app_name
   cluster_id             = data.aws_ecs_cluster.ecs_cluster.arn
   task_definition        = "${module.task_definition.family_ec2}:${data.aws_ecs_task_definition.sample-app.revision}"
-  deployment_controller  = "CODE_DEPLOY"
-  desired_count          = 1
+  deployment_controller  = var.deployment_controller
+  desired_count          = var.desired_count
   launch_type            = "EC2"
   target_group_arn       = module.target_group.alb_tg_arn
   container_name         = var.app_name
-  container_port         = 80
+  container_port         = var.target_group_port # Container port defined in the Task Definition
   predefined_metric_type = var.predefined_metric_type
   cluster_name           = var.cluster_name
   max_capacity           = var.max_capacity
@@ -145,7 +145,7 @@ module "service_ecs_blue" {
   }
 }
 
-//Template because inside json have variables
+//Template because inside json have variables, this will provision a sample
 data "template_file" "task" {
   template = file("./files/service.json")
 

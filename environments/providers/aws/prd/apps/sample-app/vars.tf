@@ -62,8 +62,17 @@ variable "ecs_scaling_role_arn" {
   default = ""
 }
 
+variable "deployment_controller" {
+  default = "CODE_DEPLOY"
+}
+
+variable "desired_count" {
+  var = 1
+}
+
 # Pipeline variables
 
 variable "repo_name" {
   default = "sample-app"
+  description = "CodeCommit repository name for my application"
 }
