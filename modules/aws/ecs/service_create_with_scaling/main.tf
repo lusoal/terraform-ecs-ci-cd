@@ -20,6 +20,11 @@ resource "aws_ecs_service" "service_ec2" {
     container_port = "${var.container_port}"
   }
 
+  lifecycle {
+    ignore_changes = [task_definition]
+  }
+
+
   tags           = "${var.tags}"
   propagate_tags = "${var.propagate_tags}"
 }
@@ -85,6 +90,10 @@ resource "aws_ecs_service" "service_fargate" {
     security_groups  = ["${var.security_groups}"]
     subnets          = ["${var.subnets}"]
     assign_public_ip = true
+  }
+
+  lifecycle {
+    ignore_changes = [task_definition]
   }
 
   tags           = "${var.tags}"
