@@ -39,7 +39,7 @@ resource "aws_appautoscaling_target" "ecs_target" {
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 
-  depends_on = ["aws_ecs_service.service_ec2"]
+  depends_on = [aws_ecs_service.service_ec2]
 }
 
 resource "aws_appautoscaling_policy" "ecs_policy" {
@@ -60,7 +60,7 @@ resource "aws_appautoscaling_policy" "ecs_policy" {
     scale_out_cooldown = "${var.scale_out_cooldown}"
   }
 
-  depends_on = ["aws_appautoscaling_target.ecs_target", "aws_ecs_service.service_ec2"]
+  depends_on = [aws_appautoscaling_target.ecs_target, aws_ecs_service.service_ec2]
 }
 
 //Scaling not yet implemented to Fargate Instances

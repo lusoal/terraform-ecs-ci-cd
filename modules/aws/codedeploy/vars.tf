@@ -33,3 +33,7 @@ variable "test_target_group" {
 variable "test_listener" {
   
 }
+
+variable "service_arn" {
+  
+}

@@ -21,6 +21,7 @@ module "codedeployapp" {
   main_target_group = "ecs-${var.app_name}"
   test_target_group = "ecs-${var.app_name}-test"
   test_listener     = module.loadbalancer_lister_http_test.arn_http
+  service_arn = module.service_ecs_blue.service_id_ec2 # Required because of time sleep
 }
 
 module "codepipelineproject" {

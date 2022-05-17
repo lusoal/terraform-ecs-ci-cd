@@ -63,6 +63,11 @@ resource "aws_iam_role_policy" "codedeploy" {
 POLICY
 }
 
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [var.service_arn]
+
+  create_duration = "50s"
+}
 
 resource "aws_codedeploy_deployment_group" "ecs" {
   app_name               = var.app_name
