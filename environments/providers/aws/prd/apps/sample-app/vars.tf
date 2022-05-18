@@ -15,7 +15,7 @@ variable "task_role_arn" {
 }
 
 variable "execution_role_arn" {
-  default = "arn:aws:iam::936068047509:role/ecsTaskExecutionRole"
+  default = "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole"
 }
 
 variable "app_name" {
