@@ -36,3 +36,11 @@ This repository is intended to create a full CI/CD pipeline using the Code stack
 **environments/providers/aws/prd/apps:** This folder is where all the IaC apps stays, it will create an ECS service, LoadBalancer and Code stack for CI/CD.
 
 **modules:** This is the folder where the modules are stored, so inside this folder we have the Terraform Resources
+
+## Suggested CI/CD Architecture
+
+This architecture is not yet implemented in this IaC, but it is a suggested architecture thinking in Dev and Prod environments.
+
+<p align="center"> 
+<img src="images/CI_CD-ECS.png">
+</p>
