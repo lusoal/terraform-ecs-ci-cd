@@ -42,5 +42,5 @@ This repository is intended to create a full CI/CD pipeline using the Code stack
 This architecture is not yet implemented in this IaC, but it is a suggested architecture thinking in Dev and Prod environments.
 
 <p align="center"> 
-<img src="images/CI_CD-ECS.png">
+<img src="images/CI-CD-ECS.png">
 </p>
